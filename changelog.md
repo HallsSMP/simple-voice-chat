@@ -1,1 +1,2 @@
 - Added spectator interaction config option
+- Fixed open groups config option always active

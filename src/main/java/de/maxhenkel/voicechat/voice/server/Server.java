@@ -210,6 +210,7 @@ public class Server extends Thread {
             if (Main.SERVER_CONFIG.openGroups.get()) {
                 processProximityPacket(state, player, packet);
             }
+            return;
         }
         processProximityPacket(state, player, packet);
     }

@@ -114,38 +114,6 @@ processResources {
     }
 }
 
-curseforge {
-    apiKey = System.env.CURSEFORGE_API_KEY != null ? System.env.CURSEFORGE_API_KEY : file('curseforge_api_key.txt').text
-    project {
-        id = curse_id
-        changelogType = 'markdown'
-        changelog = file('changelog.md')
-        releaseType = curse_release_type
-        addGameVersion mod_minecraft_version
-        mainArtifact(jar) {
-            displayName = "[FORGE][${mod_minecraft_version}] ${mod_name} ${mod_version}"
-        }
-    }
-}
-
-forgeUpdate {
-    def messages = []
-    file('changelog.md').eachLine { String line ->
-        if (line.trim().startsWith('-')) {
-            messages.add(line.replaceFirst('-', '').trim())
-        }
-    }
-
-    serverURL = 'https://update.maxhenkel.de/'
-    apiKey = file('forge_update_api_key.txt').exists() ? file('forge_update_api_key.txt').text : ''
-    modID = mod_id
-    gameVersion = mod_minecraft_version
-    modVersion = mod_version
-    updateMessages = messages
-    releaseType = curse_release_type
-    tags = recommended == 'true' ? ['recommended'] : []
-}
-
 repositories {
     mavenLocal()
     maven {
